@@ -2,7 +2,6 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 class NewPerson extends StatefulWidget {
   @override
   _NewPersonState createState() => _NewPersonState();
@@ -14,79 +13,119 @@ class NewPerson extends StatefulWidget {
 
 class _NewPersonState extends State<NewPerson> {
   TextEditingController controllerName = TextEditingController();
-  TextEditingController controllerCidade = TextEditingController();
   TextEditingController controllerCpf = TextEditingController();
-  TextEditingController controllerRua = TextEditingController();
+  TextEditingController controllerAddress = TextEditingController();
+  TextEditingController controllerCity = TextEditingController();
+  TextEditingController controllerPhone = TextEditingController();
+  TextEditingController controllerEmail = TextEditingController();
 
-  bool _validTitle = true;
-  bool _validLink = true;
+  bool _validCpf = true;
+  bool _validName = true;
+  bool _validPhone = true;
+  bool _validEmail = true;
 
   @override
   void initState() {
     super.initState();
   }
 
-  Future<void> _savePlaylist() async {
-
-  }
-
   bool validateTextFields() {
     String errors = "";
-    if (controllerRua.text.isEmpty) {
-      errors += "Link";
-      _validLink = false;
-    }
     if (controllerName.text.isEmpty) {
-      errors += "Title";
-      _validTitle = false;
+      errors += "Name";
+      _validCpf = false;
+    }
+    if (controllerEmail.text.isEmpty) {
+      errors += "Email";
+      _validName = false;
+    }
+    if (controllerPhone.text.isEmpty) {
+      errors += "Phone";
+      _validName = false;
+    }
+    if (controllerCpf.text.isEmpty) {
+      errors += "Cpf";
+      _validName = false;
     }
     return errors.isEmpty ? true : false;
   }
 
-  void _loseFocus() {
-    FocusScopeNode currentFocus = FocusScope.of(context);
-    if (!currentFocus.hasPrimaryFocus) {
-      currentFocus.unfocus();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return ListView(children: [
 
+    double width, height;
+    width = MediaQuery.of(context).size.width * 0.33;
+    height = MediaQuery.of(context).size.height * 0.07;
+
+    return ListView(
+        children: [
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: TextField(
           autofocus: true,
           minLines: 1,
-          maxLines: 4,
-          maxLength: 500,
+          maxLines: 2,
+          maxLength: 150,
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
           textCapitalization: TextCapitalization.sentences,
           keyboardType: TextInputType.name,
-          controller: controllerRua,
+          controller: controllerAddress,
           decoration: InputDecoration(
-              labelText: "Link",
+              labelText: "Name",
               helperText: "* Required",
               counterText: "",
-              errorText: (_validLink) ? null : "Link is empty"),
+              errorText: (_validName) ? null : "Name is empty"),
         ),
       ),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: TextField(
           minLines: 1,
-          maxLines: 3,
-          maxLength: 300,
+          maxLines: 1,
+          maxLength: 15,
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
           textCapitalization: TextCapitalization.sentences,
           keyboardType: TextInputType.name,
           controller: controllerName,
           decoration: InputDecoration(
-              labelText: "Title",
+              labelText: "Cpf",
               helperText: "* Required",
               counterText: "",
-              errorText: (_validTitle) ? null : "Title is empty"),
+              errorText: (_validCpf) ? null : "Cpf is empty"),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        child: TextField(
+          minLines: 1,
+          maxLines: 1,
+          maxLength: 20,
+          maxLengthEnforcement: MaxLengthEnforcement.enforced,
+          textCapitalization: TextCapitalization.sentences,
+          keyboardType: TextInputType.name,
+          controller: controllerPhone,
+          decoration: InputDecoration(
+              labelText: "Phone",
+              helperText: "* Required",
+              counterText: "",
+              errorText: (_validPhone) ? null : "Phone is empty"),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        child: TextField(
+          minLines: 1,
+          maxLines: 1,
+          maxLength: 100,
+          maxLengthEnforcement: MaxLengthEnforcement.enforced,
+          textCapitalization: TextCapitalization.sentences,
+          keyboardType: TextInputType.name,
+          controller: controllerEmail,
+          decoration: InputDecoration(
+              labelText: "Email",
+              helperText: "* Required",
+              counterText: "",
+              errorText: (_validEmail) ? null : "Email is empty"),
         ),
       ),
       Padding(
@@ -98,14 +137,51 @@ class _NewPersonState extends State<NewPerson> {
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
           textCapitalization: TextCapitalization.sentences,
           keyboardType: TextInputType.name,
-          controller: controllerCidade,
+          controller: controllerAddress,
           decoration: const InputDecoration(
-            labelText: "Artist",
+            labelText: "Adress",
             counterText: "",
           ),
         ),
       ),
-
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        child: TextField(
+          minLines: 1,
+          maxLines: 1,
+          maxLength: 150,
+          maxLengthEnforcement: MaxLengthEnforcement.enforced,
+          textCapitalization: TextCapitalization.sentences,
+          keyboardType: TextInputType.name,
+          controller: controllerCity,
+          decoration: const InputDecoration(
+            labelText: "City",
+            counterText: "",
+          ),
+        ),
+      ),
+      const SizedBox(
+        height: 25,
+      ),
+    SizedBox(
+    height: height,
+      child: Padding(
+        padding:  EdgeInsets.symmetric(horizontal: width,),
+        child: ElevatedButton.icon(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.save_outlined,
+            size: 24,
+            color: Colors.black87,
+          ),
+          label: const Text('Save',
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.black87,
+            ),),
+        ),
+      ),
+    ),
       const SizedBox(
         height: 50,
       ),

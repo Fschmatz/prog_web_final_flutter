@@ -27,7 +27,7 @@ class _TilePessoaState extends State<TilePessoa> {
           onTap: () {},
 
           title: Text('Pessoa ${widget.index}'),
-          subtitle: Text('''
+          subtitle: const Text('''
 -“Hi doggy!”
 -“You’re my favourite customer.”
 -“Thanks a lot, bye!” '''

@@ -20,7 +20,8 @@ class _HomeState extends State<Home> {
   List<Map<String, dynamic>> history = [];
   final TextEditingController messageText = TextEditingController();
   bool loadingHistory = false;
-  int _selectedIndex = 0;
+
+  int _selectedIndex = 1; // def = 0
   final List<Widget> _tabs = [
     PersonList(),
     NewPerson(),
@@ -49,7 +50,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Prog. Web Final Flutter'),
+          title: const Text('Prog. Web Final - Flutter'),
           actions: [
             IconButton(
                 icon: const Icon(
@@ -67,6 +68,8 @@ class _HomeState extends State<Home> {
         body: Row(
           children: <Widget>[
             NavigationRail(
+              minWidth: 65,
+              minExtendedWidth: 200,
               extended: true,
               selectedIndex: _selectedIndex,
               onDestinationSelected: (int index) {
@@ -79,12 +82,12 @@ class _HomeState extends State<Home> {
                 NavigationRailDestination(
                   icon: Icon(Icons.home_outlined),
                   selectedIcon: Icon(Icons.home),
-                  label: Text('Listagem'),
+                  label: Text('Home'),
                 ),
                 NavigationRailDestination(
                   icon: Icon(Icons.add_outlined),
                   selectedIcon: Icon(Icons.add),
-                  label: Text('Novo Cadastro'),
+                  label: Text('New'),
                 ),
                 NavigationRailDestination(
                   icon: Icon(Icons.bug_report_outlined),
