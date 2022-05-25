@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Web App Flutter Teste API'),
+          title: const Text('Prog. Web Final Flutter'),
           actions: [
             IconButton(
                 icon: const Icon(
@@ -104,3 +104,5 @@ class _HomeState extends State<Home> {
         ));
   }
 }
+
+//flutter run -d chrome

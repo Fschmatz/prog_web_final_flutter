@@ -15,6 +15,7 @@ class _TilePessoaState extends State<TilePessoa> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
       child: Card(
+
         child: ListTile(
           tileColor: Theme.of(context).dialogTheme.backgroundColor,
           shape: const RoundedRectangleBorder(
@@ -22,6 +23,8 @@ class _TilePessoaState extends State<TilePessoa> {
           ),
            leading: const Icon(Icons.person_outline),
           minVerticalPadding: 10,
+
+          onTap: () {},
 
           title: Text('Pessoa ${widget.index}'),
           subtitle: Text('''
