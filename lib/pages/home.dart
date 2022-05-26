@@ -7,7 +7,7 @@ import 'package:teste_web/pages/new_person.dart';
 import 'package:teste_web/pages/person_list.dart';
 import 'package:teste_web/util/settings_page.dart';
 
-import '../widgets/tile_pessoa.dart';
+import '../widgets/person_tile.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
   final TextEditingController messageText = TextEditingController();
   bool loadingHistory = false;
 
-  int _selectedIndex = 1; // def = 0
+  int _selectedIndex = 0; // def = 0
   final List<Widget> _tabs = [
     PersonList(),
     NewPerson(),
@@ -31,7 +31,6 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    //_getHistory(false);
     super.initState();
   }
 

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
-class TilePessoa extends StatefulWidget {
+import '../classes/person.dart';
+
+class PersonTile extends StatefulWidget {
 
   int index;
-  TilePessoa({Key? key, required this.index}) : super(key: key);
+  Person person;
+  PersonTile({Key? key, required this.index, required this.person}) : super(key: key);
 
   @override
-  State<TilePessoa> createState() => _TilePessoaState();
+  State<PersonTile> createState() => _PersonTileState();
 }
 
-class _TilePessoaState extends State<TilePessoa> {
+class _PersonTileState extends State<PersonTile> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,12 +29,8 @@ class _TilePessoaState extends State<TilePessoa> {
 
           onTap: () {},
 
-          title: Text('Pessoa ${widget.index}'),
-          subtitle: const Text('''
--“Hi doggy!”
--“You’re my favourite customer.”
--“Thanks a lot, bye!” '''
-          ),
+          title: Text('Joke ${widget.index}'),
+          subtitle: Text(widget.person.name),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

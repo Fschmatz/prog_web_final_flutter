@@ -19,6 +19,13 @@ class _NewPersonState extends State<NewPerson> {
   TextEditingController controllerPhone = TextEditingController();
   TextEditingController controllerEmail = TextEditingController();
 
+  FocusNode focusName = FocusNode();
+  FocusNode focusCpf = FocusNode();
+  FocusNode focusAddress = FocusNode();
+  FocusNode focusCity = FocusNode();
+  FocusNode focusPhone = FocusNode();
+  FocusNode focusEmail= FocusNode();
+
   bool _validCpf = true;
   bool _validName = true;
   bool _validPhone = true;
@@ -52,24 +59,21 @@ class _NewPersonState extends State<NewPerson> {
 
   @override
   Widget build(BuildContext context) {
-
     double width, height;
     width = MediaQuery.of(context).size.width * 0.33;
     height = MediaQuery.of(context).size.height * 0.07;
 
-    return ListView(
-        children: [
+    return ListView(children: [
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: TextField(
-          autofocus: true,
           minLines: 1,
-          maxLines: 2,
+          maxLines: 1,
           maxLength: 150,
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
-          textCapitalization: TextCapitalization.sentences,
-          keyboardType: TextInputType.name,
-          controller: controllerAddress,
+          focusNode: focusName,
+          onEditingComplete: () => focusCpf.requestFocus(),
+          controller: controllerName,
           decoration: InputDecoration(
               labelText: "Name",
               helperText: "* Required",
@@ -78,15 +82,16 @@ class _NewPersonState extends State<NewPerson> {
         ),
       ),
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: TextField(
           minLines: 1,
           maxLines: 1,
           maxLength: 15,
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
-          textCapitalization: TextCapitalization.sentences,
-          keyboardType: TextInputType.name,
-          controller: controllerName,
+          textInputAction: TextInputAction.next,
+          onEditingComplete: () => focusPhone.requestFocus(),
+          focusNode: focusCpf,
+          controller: controllerCpf,
           decoration: InputDecoration(
               labelText: "Cpf",
               helperText: "* Required",
@@ -95,14 +100,14 @@ class _NewPersonState extends State<NewPerson> {
         ),
       ),
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: TextField(
           minLines: 1,
           maxLines: 1,
           maxLength: 20,
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
-          textCapitalization: TextCapitalization.sentences,
-          keyboardType: TextInputType.name,
+          onSubmitted: (_) => focusEmail.requestFocus(),
+          focusNode: focusPhone,
           controller: controllerPhone,
           decoration: InputDecoration(
               labelText: "Phone",
@@ -112,15 +117,15 @@ class _NewPersonState extends State<NewPerson> {
         ),
       ),
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: TextField(
           minLines: 1,
           maxLines: 1,
           maxLength: 100,
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
-          textCapitalization: TextCapitalization.sentences,
-          keyboardType: TextInputType.name,
+          focusNode: focusEmail,
           controller: controllerEmail,
+          onSubmitted: (_) => focusAddress.requestFocus(),
           decoration: InputDecoration(
               labelText: "Email",
               helperText: "* Required",
@@ -129,30 +134,29 @@ class _NewPersonState extends State<NewPerson> {
         ),
       ),
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: TextField(
           minLines: 1,
-          maxLines: 2,
+          maxLines: 1,
           maxLength: 300,
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
-          textCapitalization: TextCapitalization.sentences,
-          keyboardType: TextInputType.name,
+          focusNode: focusAddress,
           controller: controllerAddress,
+          onSubmitted: (_) => focusCity.requestFocus(),
           decoration: const InputDecoration(
-            labelText: "Adress",
+            labelText: "Address",
             counterText: "",
           ),
         ),
       ),
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
         child: TextField(
           minLines: 1,
           maxLines: 1,
           maxLength: 150,
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
-          textCapitalization: TextCapitalization.sentences,
-          keyboardType: TextInputType.name,
+          focusNode: focusCity,
           controller: controllerCity,
           decoration: const InputDecoration(
             labelText: "City",
@@ -163,25 +167,35 @@ class _NewPersonState extends State<NewPerson> {
       const SizedBox(
         height: 25,
       ),
-    SizedBox(
-    height: height,
-      child: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: width,),
-        child: ElevatedButton.icon(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.save_outlined,
-            size: 24,
-            color: Colors.black87,
+      SizedBox(
+        height: height,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: width,
           ),
-          label: const Text('Save',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.black87,
-            ),),
+          child: ElevatedButton.icon(
+            style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25.0),
+            ))),
+            onPressed: () {},
+            icon: const Icon(
+              Icons.save_outlined,
+              size: 24,
+              color: Colors.black,
+            ),
+            label: const Text(
+              'Save',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+          ),
         ),
       ),
-    ),
       const SizedBox(
         height: 50,
       ),

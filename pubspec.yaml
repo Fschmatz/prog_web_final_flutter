@@ -33,6 +33,7 @@ dependencies:
   http:
   easy_dynamic_theme:
   share:
+  dynamic_value:
   shared_preferences:
 
 
