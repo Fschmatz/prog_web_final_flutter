@@ -1,10 +1,14 @@
 class AppDetails{
 
-  static String appVersion = "0.4.0";
+  static String appVersion = "0.5.0";
   static String appName = "Trabalho Final Prog. Web - Flutter Web";
   static String repositoryLink = "https://www.youtube.com/watch?v=p1_VQoJ7SNQ";
 
   static String changelogs = '''
+0.5.0
+- Class
+- Mock API
+
 0.4.0
 - TextFields
 - UI Changes

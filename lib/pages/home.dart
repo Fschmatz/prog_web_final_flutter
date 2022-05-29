@@ -7,6 +7,7 @@ import 'package:teste_web/pages/new_person.dart';
 import 'package:teste_web/pages/person_list.dart';
 import 'package:teste_web/util/settings_page.dart';
 
+import '../util/app_details.dart';
 import '../widgets/person_tile.dart';
 
 class Home extends StatefulWidget {
@@ -49,7 +50,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Prog. Web Final - Flutter'),
+          title: Text('${AppDetails.appName} ${AppDetails.appVersion}',),
           actions: [
             IconButton(
                 icon: const Icon(
@@ -65,6 +66,7 @@ class _HomeState extends State<Home> {
           ],
         ),
         body: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             NavigationRail(
               minWidth: 65,
@@ -102,7 +104,8 @@ class _HomeState extends State<Home> {
             ),
 
            //PAGES usar expanded direto aqui
-        Expanded(child: _tabs[ _selectedIndex])],
+        Expanded(
+            child: _tabs[ _selectedIndex])],
         ));
   }
 }

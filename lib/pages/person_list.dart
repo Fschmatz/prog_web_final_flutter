@@ -12,13 +12,10 @@ class PersonList extends StatefulWidget {
 }
 
 class _PersonListState extends State<PersonList> {
+
   bool loading = true;
-
-  String urlJson = 'http://api.icndb.com/jokes/random'; // 1
-  //String urlJson = 'http://api.icndb.com/jokes/random/10'; // various
-
-  List<Person> personList = [];
-  Person person = Person(name: '');
+  String urlJson = 'https://zoo-animal-api.herokuapp.com/animals/rand/10';
+  List<dynamic> personList = [];
 
   @override
   void initState() {
@@ -29,15 +26,12 @@ class _PersonListState extends State<PersonList> {
   Future<void> loadJsonData() async {
     final response = await http.get(Uri.parse(urlJson));
     if (response.statusCode == 200) {
-      //Person p = Person.fromJson(jsonDecode(response.body));
-      final parsed = json.decode(response.body).cast<String, dynamic>();
-      //List<Person> listJson = Person.fromJson(parsed) as List<Person>;
-      Person x = Person.fromJson(parsed);
-
-
+      var decodedJson = jsonDecode(response.body);
+      //print(decodedJson);
+      personList = decodedJson
+          .map((jsonElement) => Person.fromJson(jsonElement))
+          .toList();
       setState(() {
-        person = x;
-        //personList = listJson;
         loading = false;
       });
     }
@@ -52,23 +46,32 @@ class _PersonListState extends State<PersonList> {
           duration: const Duration(milliseconds: 600),
           child: (loading)
               ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text('Loading...',style: TextStyle(fontSize: 18),),
-                  SizedBox(height: 20,),
-                  CircularProgressIndicator(),
-                ],
-              )
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      'Loading...',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    CircularProgressIndicator(),
+                  ],
+                )
               : ListView.builder(
                   shrinkWrap: true,
-                  itemCount: 5,//personList.length,
+                  itemCount: personList.length,
                   itemBuilder: (context, index) {
                     return PersonTile(
                       key: UniqueKey(),
                       index: index,
                       person: Person(
-                          //name: personList[index].name
-                          name: person.name
+                        name: personList[index].name,
+                        cpf: personList[index].cpf,
+                        phone: personList[index].phone,
+                        email: personList[index].email,
+                        address: personList[index].address,
+                        city: personList[index].city,
                       ),
                     );
                   },

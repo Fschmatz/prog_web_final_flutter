@@ -32,11 +32,11 @@ _launchGithub() {
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
-          child: const ListTile(
+          child: ListTile(
             title:  Text(
-              "Trabalho Final Prog. Web - Flutter Web",
+              '${AppDetails.appName} ${AppDetails.appVersion}',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 17.5, color: Colors.black),
+              style: const TextStyle(fontSize: 17.5, color: Colors.black),
             ),
           ),
         ),
