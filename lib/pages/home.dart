@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
   final List<Widget> _tabs = [
     PersonList(),
     NewPerson(),
-    DebugPage(),
+   // DebugPage(),
     InfoPage(),
   ];
 
@@ -90,11 +90,11 @@ class _HomeState extends State<Home> {
                   selectedIcon: Icon(Icons.add),
                   label: Text('New'),
                 ),
-                NavigationRailDestination(
+                /*NavigationRailDestination(
                   icon: Icon(Icons.bug_report_outlined),
                   selectedIcon: Icon(Icons.bug_report),
                   label: Text('Debug'),
-                ),
+                ),*/
                 NavigationRailDestination(
                   icon: Icon(Icons.info_outline),
                   selectedIcon: Icon(Icons.info),
