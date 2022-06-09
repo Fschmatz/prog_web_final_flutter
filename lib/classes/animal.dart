@@ -1,7 +1,6 @@
 import 'package:dynamic_value/dynamic_value.dart';
 
-class Person {
-  final String id;
+class Animal {
   final String name;
   final String cpf;
   final String phone;
@@ -9,8 +8,7 @@ class Person {
   final String address;
   final String city;
 
-  Person({
-    required this.id,
+  Animal({
     required this.name,
     required this.cpf,
     required this.phone,
@@ -19,16 +17,15 @@ class Person {
     required this.city,
   });
 
-  factory Person.fromJson(Map<String, dynamic> json) {
+  factory Animal.fromJson(Map<String, dynamic> json) {
     final value = DynamicValue(json);
-    return Person(
-      id: value["id"].toString(),
+    return Animal(
       name: value["name"].toString(),
-      cpf: value["cgc"].toString(),
-      phone: value["phone"].toString(),
-      email: value["email"].toString(),
-      address: value["address"].toString(),
-      city: value["city"].toString(),
+      cpf: value["animal_type"].toString(),
+      phone: value["weight_max"].toString(),
+      email: value["length_max"].toString(),
+      address: value["geo_range"].toString(),
+      city: value["lifespan"].toString(),
     );
   }
 

@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
-import 'package:teste_web/pages/debug.dart';
 import 'package:teste_web/pages/info_page.dart';
 import 'package:teste_web/pages/new_person.dart';
 import 'package:teste_web/pages/person_list.dart';
 import 'package:teste_web/util/settings_page.dart';
-
 import '../util/app_details.dart';
 import '../widgets/person_tile.dart';
 
@@ -26,24 +22,12 @@ class _HomeState extends State<Home> {
   final List<Widget> _tabs = [
     PersonList(),
     NewPerson(),
-   // DebugPage(),
     InfoPage(),
   ];
 
   @override
   void initState() {
     super.initState();
-  }
-
-  Future<void> _getHistory([bool refresh = true]) async {
-    if (refresh) {
-      setState(() {
-        loadingHistory = true;
-      });
-    }
-    setState(() {
-      loadingHistory = false;
-    });
   }
 
   @override
@@ -90,11 +74,6 @@ class _HomeState extends State<Home> {
                   selectedIcon: Icon(Icons.add),
                   label: Text('New'),
                 ),
-                /*NavigationRailDestination(
-                  icon: Icon(Icons.bug_report_outlined),
-                  selectedIcon: Icon(Icons.bug_report),
-                  label: Text('Debug'),
-                ),*/
                 NavigationRailDestination(
                   icon: Icon(Icons.info_outline),
                   selectedIcon: Icon(Icons.info),

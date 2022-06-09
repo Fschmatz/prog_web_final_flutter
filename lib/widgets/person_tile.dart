@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
 import '../classes/person.dart';
 
 class PersonTile extends StatefulWidget {
   int index;
   Person person;
+  Function() refreshPersonList;
 
-  PersonTile({Key? key, required this.index, required this.person})
+  PersonTile({Key? key, required this.index, required this.person, required this.refreshPersonList})
       : super(key: key);
 
   @override
@@ -14,6 +15,25 @@ class PersonTile extends StatefulWidget {
 }
 
 class _PersonTileState extends State<PersonTile> {
+
+  String urlApi = 'http://app.gsoftwares.com.br:3000/clients/';
+
+  Future<void> deletePerson() async {
+    final response = await http.delete(
+      Uri.parse(urlApi + widget.person.id),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      print('Delete OK');
+    } else {
+      throw Exception('Fail');
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,9 +47,8 @@ class _PersonTileState extends State<PersonTile> {
           leading: const Icon(Icons.person_outline),
           minVerticalPadding: 16,
           onTap: () {},
-          title: Text(widget.person.name),
-          subtitle: Text(
-              'Cpf: ${widget.person.cpf}\n'
+          title: Text(widget.person.name + widget.person.id),
+          subtitle: Text('Cpf: ${widget.person.cpf}\n'
               'Phone: ${widget.person.phone}\n'
               'Email: ${widget.person.email}\n'
               'Address: ${widget.person.address}\n'
@@ -42,7 +61,9 @@ class _PersonTileState extends State<PersonTile> {
                     Icons.edit_outlined,
                     size: 20,
                   ),
-                  onPressed: () {}),
+                  onPressed: () {
+
+                  }),
               const SizedBox(
                 width: 8,
               ),
@@ -51,7 +72,9 @@ class _PersonTileState extends State<PersonTile> {
                     Icons.delete_outlined,
                     size: 20,
                   ),
-                  onPressed: () {}),
+                  onPressed: () {
+                    deletePerson().then((v) => widget.refreshPersonList());
+                  }),
             ],
           ),
         ),

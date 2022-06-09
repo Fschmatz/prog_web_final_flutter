@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:teste_web/classes/person.dart';
+import '../classes/animal.dart';
 import '../widgets/person_tile.dart';
 import 'dart:convert';
 
@@ -12,18 +13,22 @@ class PersonList extends StatefulWidget {
 }
 
 class _PersonListState extends State<PersonList> {
-
   bool loading = true;
-  String urlJson = 'https://zoo-animal-api.herokuapp.com/animals/rand/10';
+  String urlJson = 'http://app.gsoftwares.com.br:3000/clients';
   List<dynamic> personList = [];
 
   @override
   void initState() {
-    loadJsonData();
+    loadPersonList();
     super.initState();
   }
 
-  Future<void> loadJsonData() async {
+  Future<void> loadPersonList([bool refresh = true]) async {
+    if (refresh) {
+      setState(() {
+        loading = true;
+      });
+    }
     final response = await http.get(Uri.parse(urlJson));
     if (response.statusCode == 200) {
       var decodedJson = jsonDecode(response.body);
@@ -59,13 +64,14 @@ class _PersonListState extends State<PersonList> {
                   ],
                 )
               : ListView.builder(
-                  shrinkWrap: true,
                   itemCount: personList.length,
                   itemBuilder: (context, index) {
                     return PersonTile(
                       key: UniqueKey(),
                       index: index,
+                      refreshPersonList: loadPersonList,
                       person: Person(
+                        id: personList[index].id,
                         name: personList[index].name,
                         cpf: personList[index].cpf,
                         phone: personList[index].phone,
