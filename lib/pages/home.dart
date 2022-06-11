@@ -56,13 +56,13 @@ class _HomeState extends State<Home> {
               minWidth: 65,
               minExtendedWidth: 200,
               extended: true,
+              labelType: NavigationRailLabelType.none,
               selectedIndex: _selectedIndex,
               onDestinationSelected: (int index) {
                 setState(() {
                   _selectedIndex = index;
                 });
               },
-              labelType: NavigationRailLabelType.none,
               destinations: const <NavigationRailDestination>[
                 NavigationRailDestination(
                   icon: Icon(Icons.home_outlined),

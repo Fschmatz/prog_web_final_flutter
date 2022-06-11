@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:teste_web/pages/edit_person.dart';
 import '../classes/person.dart';
 
 class PersonTile extends StatefulWidget {
@@ -31,7 +32,6 @@ class _PersonTileState extends State<PersonTile> {
     } else {
       throw Exception('Fail');
     }
-
   }
 
   @override
@@ -62,7 +62,22 @@ class _PersonTileState extends State<PersonTile> {
                     size: 20,
                   ),
                   onPressed: () {
-
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => EditPerson(
+                            refreshHome: widget.refreshPersonList,
+                            person: Person(
+                              id: widget.person.id,
+                              name:  widget.person.name,
+                              cpf:  widget.person.cpf,
+                              phone:  widget.person.phone,
+                              email:  widget.person.email,
+                              address:  widget.person.address,
+                              city:  widget.person.city,
+                            ),
+                          ),
+                        ));
                   }),
               const SizedBox(
                 width: 8,

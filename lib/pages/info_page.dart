@@ -12,9 +12,13 @@ class InfoPage extends StatefulWidget {
 
 class _InfoPageState extends State<InfoPage> {
 
-_launchGithub() {
+  _launchGithub(String side) {
     launchUrl(
-      Uri.parse(AppDetails.repositoryLink),
+      Uri.parse(
+          (side == "f")
+          ? AppDetails.repositoryFrontEndLink
+          : AppDetails.repositoryBackEndLink
+      ),
       mode: LaunchMode.externalApplication,
     );
   }
@@ -40,10 +44,8 @@ _launchGithub() {
             ),
           ),
         ),
-
-
         ListTile(
-          title: Text("Alunos",
+          title: Text("Students",
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
@@ -77,10 +79,20 @@ _launchGithub() {
         ),
         ListTile(
           onTap: () {
-            _launchGithub();
+            _launchGithub("f");
           },
           leading: const Icon(Icons.open_in_new_outlined),
-          title: const Text("View Source Code on GitHub",
+          title: const Text("Front-End",
+              style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  color: Colors.blue)),
+        ),
+        ListTile(
+          onTap: () {
+            _launchGithub("b");
+          },
+          leading: const Icon(Icons.open_in_new_outlined),
+          title: const Text("Back-End",
               style: TextStyle(
                   decoration: TextDecoration.underline,
                   color: Colors.blue)),
@@ -89,3 +101,5 @@ _launchGithub() {
     );
   }
 }
+
+//

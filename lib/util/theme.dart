@@ -80,7 +80,6 @@ ThemeData dark = ThemeData(
   navigationRailTheme: const NavigationRailThemeData(
     backgroundColor: Color(0xFF202022),
   ),
-
   brightness: Brightness.dark,
   primaryColor: const Color(0xFF202022),
   scaffoldBackgroundColor: const Color(0xFF202022),

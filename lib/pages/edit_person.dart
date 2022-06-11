@@ -2,16 +2,19 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class NewPerson extends StatefulWidget {
+import '../classes/person.dart';
+
+class EditPerson extends StatefulWidget {
   @override
-  _NewPersonState createState() => _NewPersonState();
+  _EditPersonState createState() => _EditPersonState();
 
-  //Function()? refreshHome;
+  Function()? refreshHome;
+  Person person;
 
-  NewPerson({Key? key}) : super(key: key);
+  EditPerson({Key? key, required this.person, required this.refreshHome}) : super(key: key);
 }
 
-class _NewPersonState extends State<NewPerson> {
+class _EditPersonState extends State<EditPerson> {
   TextEditingController controllerName = TextEditingController();
   TextEditingController controllerCpf = TextEditingController();
   TextEditingController controllerAddress = TextEditingController();
@@ -33,6 +36,12 @@ class _NewPersonState extends State<NewPerson> {
 
   @override
   void initState() {
+    controllerName.text = widget.person.name;
+    controllerCpf.text = widget.person.cpf;
+    controllerEmail.text = widget.person.email;
+    controllerPhone.text = widget.person.phone;
+    controllerAddress.text = widget.person.address;
+    controllerCity.text = widget.person.city;
     super.initState();
   }
 
@@ -177,8 +186,8 @@ class _NewPersonState extends State<NewPerson> {
             style: ButtonStyle(
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0),
-            ))),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ))),
             onPressed: () {},
             icon: const Icon(
               Icons.save_outlined,
@@ -190,7 +199,7 @@ class _NewPersonState extends State<NewPerson> {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: Colors.black87,
+                color: Colors.black,
               ),
             ),
           ),
