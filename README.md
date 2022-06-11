@@ -9,14 +9,15 @@ Esse projeto foi desenvolvido com as seguinte tecnologia:
 ## 💻 Projeto
 
 Este Projeto foi construido com o intuito de treinar as habilidades adquiridas na disciplina de desenvolvimento de aplicações para a internet - Univates.
-Front-End para <a href="https://github.com/gustavost645/prog_web_final_nodejs">Cadastro de Clientes</a>
+<br/>
+Front-End para <a href="https://github.com/gustavost645/prog_web_final_nodejs">Cadastro de Clientes</a>.
 
 ## 🚀 Como executar
 
 - Clone o repositório
 - Instalar o Flutter + Android Studio
 - Abrir pubspec.yaml
-- Pub get e Pub upgrade
+- Executar Pub get e Pub upgrade
 
 ## 📄 Licença
 
