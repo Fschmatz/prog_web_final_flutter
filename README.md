@@ -1,16 +1,23 @@
-# teste_web
+<h1 align="center">Cadastro de Clientes Front</h1>
 
-A new Flutter project.
+## ✨ Tecnologias
 
-## Getting Started
+Esse projeto foi desenvolvido com as seguinte tecnologia:
 
-This project is a starting point for a Flutter application.
+- Flutter
 
-A few resources to get you started if this is your first Flutter project:
+## 💻 Projeto
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Este Projeto foi construido com o intuito de treinar as habilidades adquiridas na disciplina de desenvolvimento de aplicações para a internet - Univates.
+Front-End para <a href="https://github.com/gustavost645/prog_web_final_nodejs">Cadastro de Clientes</a>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🚀 Como executar
+
+- Clone o repositório
+- Instalar o Flutter + Android Studio
+- Abrir pubspec.yaml
+- Pub get e Pub upgrade
+
+## 📄 Licença
+
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
