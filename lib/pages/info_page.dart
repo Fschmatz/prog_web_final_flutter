@@ -97,6 +97,23 @@ class _InfoPageState extends State<InfoPage> {
                   decoration: TextDecoration.underline,
                   color: Colors.blue)),
         ),
+        ListTile(
+          title: Text("Changelog",
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: Theme.of(context).colorScheme.primary,
+              )),
+        ),
+        ListTile(
+          leading: const Icon(
+            Icons.article_outlined,
+          ),
+          title: Text(
+            AppDetails.changelogs,
+            style: const TextStyle(fontSize: 16),
+          ),
+        ),
       ],
     );
   }

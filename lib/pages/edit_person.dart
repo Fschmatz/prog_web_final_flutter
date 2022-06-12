@@ -72,142 +72,147 @@ class _EditPersonState extends State<EditPerson> {
     width = MediaQuery.of(context).size.width * 0.33;
     height = MediaQuery.of(context).size.height * 0.07;
 
-    return ListView(children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        child: TextField(
-          minLines: 1,
-          maxLines: 1,
-          maxLength: 150,
-          maxLengthEnforcement: MaxLengthEnforcement.enforced,
-          focusNode: focusName,
-          onEditingComplete: () => focusCpf.requestFocus(),
-          controller: controllerName,
-          decoration: InputDecoration(
-              labelText: "Name",
-              helperText: "* Required",
-              counterText: "",
-              errorText: (_validName) ? null : "Name is empty"),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Edit',),
       ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        child: TextField(
-          minLines: 1,
-          maxLines: 1,
-          maxLength: 15,
-          maxLengthEnforcement: MaxLengthEnforcement.enforced,
-          textInputAction: TextInputAction.next,
-          onEditingComplete: () => focusPhone.requestFocus(),
-          focusNode: focusCpf,
-          controller: controllerCpf,
-          decoration: InputDecoration(
-              labelText: "Cpf",
-              helperText: "* Required",
-              counterText: "",
-              errorText: (_validCpf) ? null : "Cpf is empty"),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        child: TextField(
-          minLines: 1,
-          maxLines: 1,
-          maxLength: 20,
-          maxLengthEnforcement: MaxLengthEnforcement.enforced,
-          onSubmitted: (_) => focusEmail.requestFocus(),
-          focusNode: focusPhone,
-          controller: controllerPhone,
-          decoration: InputDecoration(
-              labelText: "Phone",
-              helperText: "* Required",
-              counterText: "",
-              errorText: (_validPhone) ? null : "Phone is empty"),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        child: TextField(
-          minLines: 1,
-          maxLines: 1,
-          maxLength: 100,
-          maxLengthEnforcement: MaxLengthEnforcement.enforced,
-          focusNode: focusEmail,
-          controller: controllerEmail,
-          onSubmitted: (_) => focusAddress.requestFocus(),
-          decoration: InputDecoration(
-              labelText: "Email",
-              helperText: "* Required",
-              counterText: "",
-              errorText: (_validEmail) ? null : "Email is empty"),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        child: TextField(
-          minLines: 1,
-          maxLines: 1,
-          maxLength: 300,
-          maxLengthEnforcement: MaxLengthEnforcement.enforced,
-          focusNode: focusAddress,
-          controller: controllerAddress,
-          onSubmitted: (_) => focusCity.requestFocus(),
-          decoration: const InputDecoration(
-            labelText: "Address",
-            counterText: "",
+      body: ListView(children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          child: TextField(
+            minLines: 1,
+            maxLines: 1,
+            maxLength: 150,
+            maxLengthEnforcement: MaxLengthEnforcement.enforced,
+            focusNode: focusName,
+            onEditingComplete: () => focusCpf.requestFocus(),
+            controller: controllerName,
+            decoration: InputDecoration(
+                labelText: "Name",
+                helperText: "* Required",
+                counterText: "",
+                errorText: (_validName) ? null : "Name is empty"),
           ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
-        child: TextField(
-          minLines: 1,
-          maxLines: 1,
-          maxLength: 150,
-          maxLengthEnforcement: MaxLengthEnforcement.enforced,
-          focusNode: focusCity,
-          controller: controllerCity,
-          decoration: const InputDecoration(
-            labelText: "City",
-            counterText: "",
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          child: TextField(
+            minLines: 1,
+            maxLines: 1,
+            maxLength: 15,
+            maxLengthEnforcement: MaxLengthEnforcement.enforced,
+            textInputAction: TextInputAction.next,
+            onEditingComplete: () => focusPhone.requestFocus(),
+            focusNode: focusCpf,
+            controller: controllerCpf,
+            decoration: InputDecoration(
+                labelText: "Cpf",
+                helperText: "* Required",
+                counterText: "",
+                errorText: (_validCpf) ? null : "Cpf is empty"),
           ),
         ),
-      ),
-      const SizedBox(
-        height: 25,
-      ),
-      SizedBox(
-        height: height,
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: width,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          child: TextField(
+            minLines: 1,
+            maxLines: 1,
+            maxLength: 20,
+            maxLengthEnforcement: MaxLengthEnforcement.enforced,
+            onSubmitted: (_) => focusEmail.requestFocus(),
+            focusNode: focusPhone,
+            controller: controllerPhone,
+            decoration: InputDecoration(
+                labelText: "Phone",
+                helperText: "* Required",
+                counterText: "",
+                errorText: (_validPhone) ? null : "Phone is empty"),
           ),
-          child: ElevatedButton.icon(
-            style: ButtonStyle(
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                    ))),
-            onPressed: () {},
-            icon: const Icon(
-              Icons.save_outlined,
-              size: 24,
-              color: Colors.black,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          child: TextField(
+            minLines: 1,
+            maxLines: 1,
+            maxLength: 100,
+            maxLengthEnforcement: MaxLengthEnforcement.enforced,
+            focusNode: focusEmail,
+            controller: controllerEmail,
+            onSubmitted: (_) => focusAddress.requestFocus(),
+            decoration: InputDecoration(
+                labelText: "Email",
+                helperText: "* Required",
+                counterText: "",
+                errorText: (_validEmail) ? null : "Email is empty"),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          child: TextField(
+            minLines: 1,
+            maxLines: 1,
+            maxLength: 300,
+            maxLengthEnforcement: MaxLengthEnforcement.enforced,
+            focusNode: focusAddress,
+            controller: controllerAddress,
+            onSubmitted: (_) => focusCity.requestFocus(),
+            decoration: const InputDecoration(
+              labelText: "Address",
+              counterText: "",
             ),
-            label: const Text(
-              'Save',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+          child: TextField(
+            minLines: 1,
+            maxLines: 1,
+            maxLength: 150,
+            maxLengthEnforcement: MaxLengthEnforcement.enforced,
+            focusNode: focusCity,
+            controller: controllerCity,
+            decoration: const InputDecoration(
+              labelText: "City",
+              counterText: "",
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 25,
+        ),
+        SizedBox(
+          height: height,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: width,
+            ),
+            child: ElevatedButton.icon(
+              style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                      ))),
+              onPressed: () {},
+              icon: const Icon(
+                Icons.save_outlined,
+                size: 24,
                 color: Colors.black,
+              ),
+              label: const Text(
+                'Save',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                ),
               ),
             ),
           ),
         ),
-      ),
-      const SizedBox(
-        height: 50,
-      ),
-    ]);
+        const SizedBox(
+          height: 50,
+        ),
+      ]),
+    );
   }
 }

@@ -26,11 +26,10 @@ class _PersonTileState extends State<PersonTile> {
         'Content-Type': 'application/json; charset=UTF-8',
       },
     );
-
     if (response.statusCode == 200) {
       print('Delete OK');
     } else {
-      throw Exception('Fail');
+      throw Exception('Fail - Status Code ${response.statusCode}');
     }
   }
 
@@ -47,19 +46,25 @@ class _PersonTileState extends State<PersonTile> {
           leading: const Icon(Icons.person_outline),
           minVerticalPadding: 16,
           onTap: () {},
-          title: Text(widget.person.name + widget.person.id),
-          subtitle: Text('Cpf: ${widget.person.cpf}\n'
-              'Phone: ${widget.person.phone}\n'
-              'Email: ${widget.person.email}\n'
-              'Address: ${widget.person.address}\n'
-              'City: ${widget.person.city}'),
+          title: Text(widget.person.name, style: const TextStyle(fontSize: 18),),
+          subtitle: Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text(
+                'Id: ${widget.person.id}\n'
+                'Cpf: ${widget.person.cpf}\n'
+                'Phone: ${widget.person.phone}\n'
+                'Email: ${widget.person.email}\n'
+                'Address: ${widget.person.address}\n'
+                'City: ${widget.person.city}',
+              style: const TextStyle(fontSize: 16),
+            ),
+          ),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               IconButton(
                   icon: const Icon(
                     Icons.edit_outlined,
-                    size: 20,
                   ),
                   onPressed: () {
                     Navigator.push(
@@ -80,12 +85,11 @@ class _PersonTileState extends State<PersonTile> {
                         ));
                   }),
               const SizedBox(
-                width: 8,
+                width: 20,
               ),
               IconButton(
                   icon: const Icon(
                     Icons.delete_outlined,
-                    size: 20,
                   ),
                   onPressed: () {
                     deletePerson().then((v) => widget.refreshPersonList());

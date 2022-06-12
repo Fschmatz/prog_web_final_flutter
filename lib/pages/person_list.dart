@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:teste_web/classes/person.dart';
-import '../classes/animal.dart';
 import '../widgets/person_tile.dart';
 import 'dart:convert';
 
@@ -32,7 +31,6 @@ class _PersonListState extends State<PersonList> {
     final response = await http.get(Uri.parse(urlJson));
     if (response.statusCode == 200) {
       var decodedJson = jsonDecode(response.body);
-      //print(decodedJson);
       personList = decodedJson
           .map((jsonElement) => Person.fromJson(jsonElement))
           .toList();

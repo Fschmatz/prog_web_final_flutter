@@ -65,46 +65,14 @@ class _SettingsPageState extends State<SettingsPage> {
                   }),
               leading: const Icon(Icons.brightness_6_outlined),
               title: const Text(
-                "App Theme",
+                "App theme",
               ),
               subtitle: Text(
                 getThemeStringFormatted(),
               ),
             ),
-           /* ListTile(
-              title: Text("Source Code",
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: themeColorApp)),
-            ),
-            ListTile(
-              onTap: () {
-                _launchGithub();
-              },
-              leading: const Icon(Icons.open_in_new_outlined),
-              title: const Text("View Source Code on GitHub",
-                  style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      color: Colors.blue)),
-            ),*/
-            ListTile(
-              title: Text("Changelog",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Theme.of(context).colorScheme.primary,
-                  )),
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.article_outlined,
-              ),
-              title: Text(
-                AppDetails.changelogs,
-                style: const TextStyle(fontSize: 16),
-              ),
-            ),
+
+
           ],
         ));
   }

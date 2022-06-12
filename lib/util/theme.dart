@@ -32,28 +32,33 @@ ThemeData light = ThemeData(
       borderRadius: BorderRadius.all(Radius.circular(12)),
     ),
   ),
+  snackBarTheme: const SnackBarThemeData(
+      backgroundColor: Color(0xFFDEDCD4),
+      contentTextStyle: TextStyle(
+        color: Color(0xFF050505),
+      ),
+      behavior: SnackBarBehavior.floating
+  ),
   inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: const Color(0xFFE3E4D4),
       focusColor: const Color(0xff76990b),
-      contentPadding:
-      const EdgeInsets.symmetric(vertical: 18.0, horizontal: 10.0),
       focusedBorder: OutlineInputBorder(
         borderSide: const BorderSide(
           color: Color(0xff76990b),
         ),
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(4.0),
       ),
       enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             color: Color(0xFFE3E4D4),
           ),
-          borderRadius: BorderRadius.circular(12.0)),
+          borderRadius: BorderRadius.circular(4.0)),
       border: OutlineInputBorder(
           borderSide: const BorderSide(
             color: Color(0xFFE3E4D4),
           ),
-          borderRadius: BorderRadius.circular(12.0))),
+          borderRadius: BorderRadius.circular(4.0))),
   bottomSheetTheme: const BottomSheetThemeData(
     backgroundColor: Color(0xFFFEFCF4),
     shape: RoundedRectangleBorder(
@@ -89,6 +94,13 @@ ThemeData dark = ThemeData(
     onPrimary: Color(0xFFadd53a),
     secondary: Color(0xffb4d74f),
   ),
+  snackBarTheme: const SnackBarThemeData(
+      backgroundColor: Color(0xFF3D3D3F),
+      contentTextStyle: TextStyle(
+        color: Color(0xFFEAEAEA),
+      ),
+      behavior: SnackBarBehavior.floating
+  ),
   appBarTheme: const AppBarTheme(
       color: Color(0xFF202022),
       elevation: 0,
@@ -118,24 +130,22 @@ ThemeData dark = ThemeData(
       filled: true,
       fillColor: const Color(0xFF2D2D2F),
       focusColor: const Color(0xFFadd53a),
-      contentPadding:
-          const EdgeInsets.symmetric(vertical: 18.0, horizontal: 10.0),
       focusedBorder: OutlineInputBorder(
         borderSide: const BorderSide(
           color: Color(0xFFadd53a),
         ),
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(4.0),
       ),
       enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             color: Color(0xFF2D2D2F),
           ),
-          borderRadius: BorderRadius.circular(12.0)),
+          borderRadius: BorderRadius.circular(4.0)),
       border: OutlineInputBorder(
           borderSide: const BorderSide(
             color: Color(0xFF2D2D2F),
           ),
-          borderRadius: BorderRadius.circular(12.0))),
+          borderRadius: BorderRadius.circular(4.0))),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     backgroundColor: Color(0xFF202022),
   ),

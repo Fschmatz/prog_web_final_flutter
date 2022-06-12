@@ -4,7 +4,6 @@ import 'package:teste_web/pages/new_person.dart';
 import 'package:teste_web/pages/person_list.dart';
 import 'package:teste_web/util/settings_page.dart';
 import '../util/app_details.dart';
-import '../widgets/person_tile.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -18,7 +17,7 @@ class _HomeState extends State<Home> {
   final TextEditingController messageText = TextEditingController();
   bool loadingHistory = false;
 
-  int _selectedIndex = 0; // def = 0
+  int _selectedIndex = 0; //def = 0
   final List<Widget> _tabs = [
     PersonList(),
     NewPerson(),
@@ -36,6 +35,14 @@ class _HomeState extends State<Home> {
         appBar: AppBar(
           title: Text('${AppDetails.appName} ${AppDetails.appVersion}',),
           actions: [
+            /*IconButton(
+                icon: const Icon(
+                  Icons.developer_board,
+                ),
+                onPressed: () {
+
+                }),*/
+            const SizedBox(width: 20,),
             IconButton(
                 icon: const Icon(
                   Icons.settings_outlined,
@@ -82,7 +89,7 @@ class _HomeState extends State<Home> {
               ],
             ),
 
-           //PAGES usar expanded direto aqui
+           //PAGES usar expanded direto aqui para encaixar na lateral
         Expanded(
             child: _tabs[ _selectedIndex])],
         ));

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,7 +26,7 @@ class _NewPersonState extends State<NewPerson> {
   FocusNode focusAddress = FocusNode();
   FocusNode focusCity = FocusNode();
   FocusNode focusPhone = FocusNode();
-  FocusNode focusEmail= FocusNode();
+  FocusNode focusEmail = FocusNode();
 
   bool _validCpf = true;
   bool _validName = true;
@@ -36,25 +38,65 @@ class _NewPersonState extends State<NewPerson> {
     super.initState();
   }
 
+  makePostRequest() async {
+    //CGC UNICO
+    Map<String, dynamic> body = {
+      "name": controllerName.text,
+      "cgc": controllerCpf.text,
+      "phone": controllerPhone.text,
+      "email": controllerEmail.text,
+      "address": controllerAddress.text,
+      "city": controllerCity.text,
+    };
+    String jsonBody = json.encode(body);
+    final response = await http.post(
+      Uri.parse('http://app.gsoftwares.com.br:3000/clients'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonBody,
+    );
+    if (response.statusCode == 200) {
+      print('Post OK');
+      controllerName.clear();
+      controllerCpf.clear();
+      controllerPhone.clear();
+      controllerEmail.clear();
+      controllerAddress.clear();
+      controllerCity.clear();
+      _showSnackBar();
+    } else {
+      throw Exception('Fail - Status Code ${response.statusCode}');
+    }
+  }
+
+  void _showSnackBar() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Save OK"),
+      ),
+    );
+  }
+
   bool validateTextFields() {
-    String errors = "";
+    bool ok = true;
     if (controllerName.text.isEmpty) {
-      errors += "Name";
-      _validCpf = false;
+      _validName = false;
+      ok = false;
     }
     if (controllerEmail.text.isEmpty) {
-      errors += "Email";
-      _validName = false;
+      _validEmail = false;
+      ok = false;
     }
     if (controllerPhone.text.isEmpty) {
-      errors += "Phone";
-      _validName = false;
+      _validPhone = false;
+      ok = false;
     }
     if (controllerCpf.text.isEmpty) {
-      errors += "Cpf";
-      _validName = false;
+      _validCpf = false;
+      ok = false;
     }
-    return errors.isEmpty ? true : false;
+    return ok;
   }
 
   @override
@@ -177,13 +219,31 @@ class _NewPersonState extends State<NewPerson> {
             style: ButtonStyle(
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0),
+              borderRadius: BorderRadius.circular(50.0),
             ))),
-            onPressed: () {},
+            onPressed: () {
+              if (validateTextFields()) {
+                makePostRequest();
+                //caso haja alguma campo q apresentou erro antes
+                setState(() {
+                  _validCpf = true;
+                  _validEmail= true;
+                  _validPhone= true;
+                  _validName= true;
+                });
+              } else {
+                //show errors
+                setState(() {
+                  _validCpf;
+                  _validEmail;
+                  _validPhone;
+                  _validName;
+                });
+              }
+            },
             icon: const Icon(
               Icons.save_outlined,
-              size: 24,
-              color: Colors.black,
+              color: Colors.black87,
             ),
             label: const Text(
               'Save',
@@ -197,7 +257,7 @@ class _NewPersonState extends State<NewPerson> {
         ),
       ),
       const SizedBox(
-        height: 50,
+        height: 20,
       ),
     ]);
   }

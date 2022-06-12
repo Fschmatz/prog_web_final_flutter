@@ -1,5 +1,6 @@
 import 'package:dynamic_value/dynamic_value.dart';
 
+//CLASS TEST API
 class Animal {
   final String name;
   final String cpf;
