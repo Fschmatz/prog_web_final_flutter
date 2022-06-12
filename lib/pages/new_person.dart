@@ -73,6 +73,7 @@ class _NewPersonState extends State<NewPerson> {
   void _showSnackBar() {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
+        margin: EdgeInsets.only(left: 200,right: 200, bottom: 50),
         content: Text("Save OK"),
       ),
     );

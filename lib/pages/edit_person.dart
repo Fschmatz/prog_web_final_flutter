@@ -1,17 +1,17 @@
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import '../classes/person.dart';
 
 class EditPerson extends StatefulWidget {
   @override
   _EditPersonState createState() => _EditPersonState();
 
-  Function()? refreshHome;
+  //Function()? refreshHome;
   Person person;
 
-  EditPerson({Key? key, required this.person, required this.refreshHome}) : super(key: key);
+  EditPerson({Key? key, required this.person}) : super(key: key);
 }
 
 class _EditPersonState extends State<EditPerson> {
@@ -27,7 +27,7 @@ class _EditPersonState extends State<EditPerson> {
   FocusNode focusAddress = FocusNode();
   FocusNode focusCity = FocusNode();
   FocusNode focusPhone = FocusNode();
-  FocusNode focusEmail= FocusNode();
+  FocusNode focusEmail = FocusNode();
 
   bool _validCpf = true;
   bool _validName = true;
@@ -45,25 +45,61 @@ class _EditPersonState extends State<EditPerson> {
     super.initState();
   }
 
+  makePostRequest() async {
+    //CGC UNICO
+    Map<String, dynamic> body = {
+      "name": controllerName.text,
+      "cgc": controllerCpf.text,
+      "phone": controllerPhone.text,
+      "email": controllerEmail.text,
+      "address": controllerAddress.text,
+      "city": controllerCity.text,
+    };
+    String jsonBody = json.encode(body);
+    final response = await http.put(
+      Uri.parse('http://app.gsoftwares.com.br:3000/clients/${widget.person.id}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonBody,
+    );
+    if (response.statusCode == 200) {
+      print('Put OK');
+      Navigator.of(context).pop();
+      _showSnackBar();
+    } else {
+      throw Exception('Fail - Status Code ${response.statusCode}');
+    }
+  }
+
+  void _showSnackBar() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        margin: EdgeInsets.only(left: 200,right: 200, bottom: 50),
+        content: Text("Update OK"),
+      ),
+    );
+  }
+
   bool validateTextFields() {
-    String errors = "";
+    bool ok = true;
     if (controllerName.text.isEmpty) {
-      errors += "Name";
-      _validCpf = false;
+      _validName = false;
+      ok = false;
     }
     if (controllerEmail.text.isEmpty) {
-      errors += "Email";
-      _validName = false;
+      _validEmail = false;
+      ok = false;
     }
     if (controllerPhone.text.isEmpty) {
-      errors += "Phone";
-      _validName = false;
+      _validPhone = false;
+      ok = false;
     }
     if (controllerCpf.text.isEmpty) {
-      errors += "Cpf";
-      _validName = false;
+      _validCpf = false;
+      ok = false;
     }
-    return errors.isEmpty ? true : false;
+    return ok;
   }
 
   @override
@@ -74,7 +110,7 @@ class _EditPersonState extends State<EditPerson> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit',),
+        title: const Text('Edit'),
       ),
       body: ListView(children: [
         Padding(
@@ -190,27 +226,45 @@ class _EditPersonState extends State<EditPerson> {
               style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0),
+                        borderRadius: BorderRadius.circular(50.0),
                       ))),
-              onPressed: () {},
+              onPressed: () {
+                if (validateTextFields()) {
+                  makePostRequest();
+                  //caso haja alguma campo q apresentou erro antes
+                  setState(() {
+                    _validCpf = true;
+                    _validEmail= true;
+                    _validPhone= true;
+                    _validName= true;
+                  });
+                } else {
+                  //show errors
+                  setState(() {
+                    _validCpf;
+                    _validEmail;
+                    _validPhone;
+                    _validName;
+                  });
+                }
+              },
               icon: const Icon(
                 Icons.save_outlined,
-                size: 24,
-                color: Colors.black,
+                color: Colors.black87,
               ),
               label: const Text(
-                'Save',
+                'Update',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: Colors.black,
+                  color: Colors.black87,
                 ),
               ),
             ),
           ),
         ),
         const SizedBox(
-          height: 50,
+          height: 20,
         ),
       ]),
     );

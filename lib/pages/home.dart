@@ -33,7 +33,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('${AppDetails.appName} ${AppDetails.appVersion}',),
+          title: Text(
+            '${AppDetails.appName} ${AppDetails.appVersion}',
+          ),
           actions: [
             /*IconButton(
                 icon: const Icon(
@@ -42,7 +44,9 @@ class _HomeState extends State<Home> {
                 onPressed: () {
 
                 }),*/
-            const SizedBox(width: 20,),
+            const SizedBox(
+              width: 20,
+            ),
             IconButton(
                 icon: const Icon(
                   Icons.settings_outlined,
@@ -89,9 +93,9 @@ class _HomeState extends State<Home> {
               ],
             ),
 
-           //PAGES usar expanded direto aqui para encaixar na lateral
-        Expanded(
-            child: _tabs[ _selectedIndex])],
+            //PAGES usar expanded direto aqui para encaixar na lateral
+            Expanded(child: _tabs[_selectedIndex])
+          ],
         ));
   }
 }

@@ -5,6 +5,7 @@ import '../widgets/person_tile.dart';
 import 'dart:convert';
 
 class PersonList extends StatefulWidget {
+
   PersonList({Key? key}) : super(key: key);
 
   @override

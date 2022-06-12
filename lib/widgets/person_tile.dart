@@ -8,7 +8,11 @@ class PersonTile extends StatefulWidget {
   Person person;
   Function() refreshPersonList;
 
-  PersonTile({Key? key, required this.index, required this.person, required this.refreshPersonList})
+  PersonTile({Key? key,
+    required this.index,
+    required this.person,
+    required this.refreshPersonList
+  })
       : super(key: key);
 
   @override
@@ -66,7 +70,6 @@ class _PersonTileState extends State<PersonTile> {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) => EditPerson(
-                            refreshHome: widget.refreshPersonList,
                             person: Person(
                               id: widget.person.id,
                               name:  widget.person.name,
@@ -77,7 +80,9 @@ class _PersonTileState extends State<PersonTile> {
                               city:  widget.person.city,
                             ),
                           ),
-                        ));
+                        )).then((v) =>
+                          widget.refreshPersonList()
+                    );
                   }),
               const SizedBox(
                 width: 20,
