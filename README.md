@@ -15,7 +15,7 @@ Front-End para <a href="https://github.com/gustavost645/prog_web_final_nodejs">C
 ## 🚀 Como executar
 
 - Clone o repositório
-- Instalar o Flutter + Android Studio
+- Instalar o Flutter
 - Abrir pubspec.yaml
 - Executar Pub get e Pub upgrade
 
