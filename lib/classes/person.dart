@@ -32,4 +32,18 @@ class Person {
     );
   }
 
+  String formattedInfo(Person person) {
+    String personInfo = '';
+    personInfo = 'Id: ${person.id}\n'
+        'Cpf: ${person.cpf}\n'
+        'Phone: ${person.phone}\n'
+        'Email: ${person.email}\n';
+    if (person.address.isNotEmpty) {
+      personInfo += 'Address: ${person.address}\n';
+    }
+    if (person.city.isNotEmpty) {
+      personInfo += 'City: ${person.city}\n';
+    }
+    return personInfo;
+  }
 }

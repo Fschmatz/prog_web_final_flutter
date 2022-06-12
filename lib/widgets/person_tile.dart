@@ -50,13 +50,8 @@ class _PersonTileState extends State<PersonTile> {
           subtitle: Padding(
             padding: const EdgeInsets.only(top: 10),
             child: Text(
-                'Id: ${widget.person.id}\n'
-                'Cpf: ${widget.person.cpf}\n'
-                'Phone: ${widget.person.phone}\n'
-                'Email: ${widget.person.email}\n'
-                'Address: ${widget.person.address}\n'
-                'City: ${widget.person.city}',
-              style: const TextStyle(fontSize: 16),
+               widget.person.formattedInfo(widget.person).trim(),
+              style: const TextStyle(fontSize: 15),
             ),
           ),
           trailing: Row(
