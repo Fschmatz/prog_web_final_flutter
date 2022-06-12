@@ -1,4 +1,4 @@
-<h1 align="center">Cadastro de Clientes Front</h1>
+<h1 align="center">Cadastro de Clientes Front-End</h1>
 
 ## ✨ Tecnologias
 

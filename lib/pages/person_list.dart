@@ -57,7 +57,7 @@ class _PersonListState extends State<PersonList> {
                       style: TextStyle(fontSize: 18),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     CircularProgressIndicator(),
                   ],
