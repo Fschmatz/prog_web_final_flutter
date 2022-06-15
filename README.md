@@ -11,6 +11,8 @@ Esse projeto foi desenvolvido com as seguinte tecnologia:
 Este Projeto foi construido com o intuito de treinar as habilidades adquiridas na disciplina de desenvolvimento de aplicações para a internet - Univates.
 <br/>
 Front-End para <a href="https://github.com/gustavost645/prog_web_final_nodejs">Cadastro de Clientes</a>.
+<br/>
+<a href="https://github.com/Fschmatz/FlutterTrabalhoWeb">Repositório</a> com o código Javascript. 
 
 ## 🚀 Como executar
 
@@ -19,6 +21,7 @@ Front-End para <a href="https://github.com/gustavost645/prog_web_final_nodejs">C
 - Abrir pubspec.yaml
 - Executar Pub get e Pub upgrade
 - Executar Flutter build web
+- Com os comandos executados utilizar os arquivos em Javascript gerados no servidor
 
 ## 📄 Licença
 
