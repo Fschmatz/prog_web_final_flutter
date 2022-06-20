@@ -4,6 +4,7 @@
 
 Esse projeto foi desenvolvido com as seguinte tecnologia:
 
+- Dart
 - Flutter
 
 ## 💻 Projeto
